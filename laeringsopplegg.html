@@ -6,7 +6,7 @@
   <title>Læringsopplegg – Uteklasserommet.no</title>
   <meta name="description" content="Bla i over 600 læringsopplegg fra Friluftsrådenes læringsportal. Filtrer på trinn, fag, årstid og arena.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;750;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=18">
+  <link rel="stylesheet" href="css/styles.css?v=19">
 </head>
 <body>
   <div id="site-header"></div>
@@ -80,7 +80,7 @@
 
   <div id="site-footer"></div>
 
-  <script src="js/site.js?v=18"></script>
+  <script src="js/site.js?v=19"></script>
   <script>
     const TRINN = ["Barnehage", "1.–4. trinn", "5.–7. trinn", "8.–10. trinn"];
     const FAG = ["Naturfag", "Matematikk", "Norsk", "Samfunnsfag", "Kunst og håndverk", "Mat og helse", "Kroppsøving", "Uten fagområde"];
@@ -217,7 +217,7 @@
     lagFilter("filter-aarstid", AARSTID, "aarstid");
     lagFilter("filter-arena", ARENA, "arena", ARENA_EMOJI);
 
-    fetch("data/laeringsopplegg.json?v=18")
+    fetch("data/laeringsopplegg.json?v=19")
       .then(r => r.json())
       .then(d => {
         alle = d.opplegg;

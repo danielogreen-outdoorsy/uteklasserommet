@@ -51,12 +51,18 @@
           <div>
             <a class="merke" href="index.html" style="color:#fff">
               <span class="logo-disc">${logo}</span>
-              <span style="color:#fff">Uteklasserommet<small style="color:#8fb3a0">Friluftsrådenes Landsforbund</small></span>
+              <span style="color:#fff">Uteklasserommet</span>
             </a>
             <p style="margin-top:1rem;max-width:34ch">Bygg skolens felles uteklasserom. Kartlegg, del og utvikle læringsarenaer i nærmiljøet.</p>
-            <div style="margin-top:1.6rem">
-              <small style="display:block;color:#8fb3a0;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;margin-bottom:.55rem">En del av</small>
-              <img src="img/lif-logo-hvit.svg" alt="Læring i friluft" style="height:48px;width:auto;display:block">
+            <div style="margin-top:1.6rem; display:grid; gap:1.1rem;">
+              <div>
+                <small style="display:block;color:#8fb3a0;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;margin-bottom:.4rem">Eies og drives av</small>
+                <a href="https://www.friluftsrad.no/" target="_blank" rel="noopener" style="display:inline-block;color:#fff;font-weight:650;text-decoration:none">Friluftsrådenes Landsforbund →</a>
+              </div>
+              <div>
+                <small style="display:block;color:#8fb3a0;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;margin-bottom:.55rem">En del av</small>
+                <img src="img/lif-logo-hvit.svg" alt="Læring i friluft" style="height:48px;width:auto;display:block">
+              </div>
             </div>
           </div>
           <div>
@@ -74,7 +80,7 @@
           </div>
         </div>
         <div class="bunn__under">
-          <span>© ${new Date().getFullYear()} Friluftsrådenes Landsforbund · Et prosjekt støttet av Sparebankstiftelsen DNB</span>
+          <span>© ${new Date().getFullYear()} <a href="https://www.friluftsrad.no/" target="_blank" rel="noopener" style="display:inline;text-decoration:underline">Friluftsrådenes Landsforbund</a> · Et prosjekt støttet av Sparebankstiftelsen DNB</span>
           <span>Kartdata: Kartverket · Registrering: Adaptiv 4</span>
         </div>
       </div>
