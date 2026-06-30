@@ -37,7 +37,7 @@ Nettsiden er en *inngangsport*: presentere idéen, embede kartet, og senke tersk
 Innholdet bygger på prosjektets kildefiler:
 - `Uteklasserommet_survey_feltspesifikasjon.xlsx` (25 felt, 7 seksjoner, verdilister → sjekklistas taksonomi)
 - `Uteklasserommet_datamodell.geojson`
-- Fargekoding fra `Mal_uteklasseromsplakat.pdf` (blå/grønn/gul/brun/lilla)
+- Kartkategorier/fargekoding (tegnforklaring på forside + Finn skole): 🔵 Vann og våtområde · 🟡 Åpent/dyrka mark · ⚫ Fjell · ⚪ Bebygd · 🟣 Annet. (Selve punktfargene på det embedede kartet styres av Adaptiv.)
 
 ## Læringsopplegg-katalog
 

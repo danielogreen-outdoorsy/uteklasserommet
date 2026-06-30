@@ -21,11 +21,11 @@
   --hvit: #ffffff;
 
   /* Kategorifarger – fra plakatmalen */
-  --kat-vatomrade: #2f80c2;   /* blå */
-  --kat-skog:      #2c6e49;   /* grønn */
-  --kat-mark:      #e0a526;   /* gul */
-  --kat-kulturminne:#8a5a2b;  /* brun */
-  --kat-annet:     #8155b5;   /* lilla */
+  --kat-vann:    #2f80c2;   /* blå  – Vann og våtområde */
+  --kat-mark:    #e0a526;   /* gul  – Åpent/dyrka mark */
+  --kat-fjell:   #23282b;   /* svart – Fjell */
+  --kat-bebygd:  #8c938f;   /* grå  – Bebygd */
+  --kat-annet:   #8155b5;   /* lilla – Annet */
 
   --akke: var(--gronn-600);
   --fokus: #ffb627;
@@ -175,11 +175,11 @@ a.kort:hover { transform: translateY(-3px); box-shadow: var(--skygge-l); border-
 .badge { display: inline-flex; align-items: center; gap: .4em; font-size: .82rem; font-weight: 650;
   padding: .25em .7em; border-radius: 999px; background: var(--gronn-100); color: var(--gronn-700); }
 .prikk { width: .7em; height: .7em; border-radius: 50%; flex: none; display: inline-block; }
-.kat-vatomrade   { background: var(--kat-vatomrade); }
-.kat-skog        { background: var(--kat-skog); }
-.kat-mark        { background: var(--kat-mark); }
-.kat-kulturminne { background: var(--kat-kulturminne); }
-.kat-annet       { background: var(--kat-annet); }
+.kat-vann   { background: var(--kat-vann); }
+.kat-mark   { background: var(--kat-mark); }
+.kat-fjell  { background: var(--kat-fjell); }
+.kat-bebygd { background: var(--kat-bebygd); }
+.kat-annet  { background: var(--kat-annet); }
 
 /* ---------- Kart ---------- */
 .kart-layout { display: grid; grid-template-columns: 320px 1fr; gap: 0; height: calc(100vh - 68px); min-height: 560px; }
