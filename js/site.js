@@ -39,7 +39,7 @@
         </button>
         <nav class="nav" aria-label="Hovedmeny">
           ${navHtml}
-          <a class="btn btn--gul nav__cta" href="${ADAPTIV_URL}" target="_blank" rel="noopener">Logg inn / registrer</a>
+          <a class="btn btn--gul nav__cta" href="${ADAPTIV_URL}" target="_blank" rel="noopener">Registrer uteklasserom</a>
         </nav>
       </div>
     </header>`;
