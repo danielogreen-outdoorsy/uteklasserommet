@@ -6,7 +6,7 @@
   <title>Læringsopplegg – Uteklasserommet.no</title>
   <meta name="description" content="Bla i over 600 læringsopplegg fra Friluftsrådenes læringsportal. Filtrer på trinn, fag, årstid og arena.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;750;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=9">
+  <link rel="stylesheet" href="css/styles.css?v=11">
 </head>
 <body>
   <div id="site-header"></div>
@@ -23,7 +23,11 @@
     <section class="seksjon" style="padding-top:2.2rem;">
       <div class="wrap">
         <div class="katalog">
-          <aside class="katalog__filtre">
+          <aside class="katalog__filtre" id="filtre">
+            <button class="filter-toggle" id="filter-toggle" aria-expanded="false" aria-controls="filter-innhold">
+              <span>Filtre &amp; søk</span><span class="filter-toggle__pil" aria-hidden="true">▾</span>
+            </button>
+            <div class="filter-innhold" id="filter-innhold">
             <input class="sok-felt" id="sok" type="search" placeholder="Søk i opplegg …" style="margin-bottom:1.2rem;">
 
             <div class="filter-gruppe">
@@ -43,6 +47,7 @@
               <div id="filter-arena"></div>
             </div>
             <button class="nullstill" id="nullstill" hidden>Nullstill alle filtre</button>
+            </div>
           </aside>
 
           <div>
@@ -64,7 +69,7 @@
 
   <div id="site-footer"></div>
 
-  <script src="js/site.js?v=9"></script>
+  <script src="js/site.js?v=11"></script>
   <script>
     const TRINN = ["Barnehage", "1.–4. trinn", "5.–7. trinn", "8.–10. trinn"];
     const FAG = ["Naturfag", "Matematikk", "Norsk", "Samfunnsfag", "Kunst og håndverk", "Mat og helse", "Kroppsøving", "Uten fagområde"];
@@ -163,12 +168,20 @@
       oppdater();
     });
 
+    // Sammenleggbart filterpanel (mobil)
+    const filtreAside = document.getElementById("filtre");
+    const filterToggle = document.getElementById("filter-toggle");
+    filterToggle.addEventListener("click", () => {
+      const apen = filtreAside.classList.toggle("apen");
+      filterToggle.setAttribute("aria-expanded", String(apen));
+    });
+
     lagFilter("filter-trinn", TRINN, "trinn");
     lagFilter("filter-fag", FAG, "fag");
     lagFilter("filter-aarstid", AARSTID, "aarstid");
     lagFilter("filter-arena", ARENA, "arena", ARENA_EMOJI);
 
-    fetch("data/laeringsopplegg.json?v=9")
+    fetch("data/laeringsopplegg.json?v=11")
       .then(r => r.json())
       .then(d => {
         alle = d.opplegg;
