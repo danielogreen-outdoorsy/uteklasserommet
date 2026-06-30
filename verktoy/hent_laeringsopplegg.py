@@ -67,6 +67,26 @@ def parse_place(impl):
     return seg.strip(" .:-")[:60]
 
 
+ARENA_DEF = [
+    ("Skog",                 r"skog|barskog|løvskog|granskog|trestamme|tresort|trær|løvtre|bartre"),
+    ("Vann, fjære & sjø",    r"vann|fjær|sjø|tjern|bekk|\belv\b|foss|innsjø|\bdam\b|kyst|strand|\bbad|våtmark|\bmyr|brygge|\bbåt|\bhav|fiske"),
+    ("Bålplass & leir",      r"bål|\bleir|gapahuk|grill"),
+    ("Skolegård & nærmiljø", r"skoleg|nærmilj|nærområd|\bskolen\b|uteområd|skoleplass|skolegård"),
+    ("Åpent område",         r"åpent|åpen plass|\beng\b|jorde|\bmark\b|slette|gress|beite|løkke|flatt område"),
+]
+ARENA_CATCH = r"hvor som helst|overalt|valgfri|hvor du vil|et sted|i naturen|\bnaturen\b|tilpasses"
+
+
+def arena_of(sted):
+    s = (sted or "").lower()
+    if not s:
+        return []
+    hits = [navn for navn, pat in ARENA_DEF if re.search(pat, s)]
+    if hits:
+        return hits
+    return ["Passer hvor som helst"] if re.search(ARENA_CATCH, s) else []
+
+
 def slug_of(route):
     try:
         return route.rstrip("/").split("/")[-1].split("?")[0]
@@ -99,6 +119,7 @@ def enrich(a):
             rec["sted"] = parse_place(impl)
         except Exception as e:
             rec["_err"] = str(e)[:40]
+    rec["arena"] = arena_of(rec["sted"])
     blob = " ".join(filter(None, [rec["navn"], rec["fag"] or "", rec["trinn"], rec["sted"],
                                    " ".join(rec["aarstid"]), comp[:600], equip[:200]]))
     rec["sok"] = re.sub(r"\s+", " ", blob).strip().lower()

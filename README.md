@@ -41,7 +41,7 @@ Innholdet bygger på prosjektets kildefiler:
 
 ## Læringsopplegg-katalog
 
-`data/laeringsopplegg.json` (629 opplegg) hentes fra **Friluftsrådenes læringsportal** sitt API (`friluftsrad.no/api/learningactivity/all` + detalj per opplegg). Hvert opplegg er beriket med trinn, fag, **årstid** og **sted**, samt en søkeblob som også dekker kompetansemål. Kortene **lenker til** det fulle opplegget på friluftsrad.no (innholdet speiles ikke).
+`data/laeringsopplegg.json` (629 opplegg) hentes fra **Friluftsrådenes læringsportal** sitt API (`friluftsrad.no/api/learningactivity/all` + detalj per opplegg). Hvert opplegg er beriket med trinn, fag, **årstid**, **sted** og **arena** (utledet fra sted-teksten), samt en søkeblob som også dekker kompetansemål. Filtre i katalogen: trinn · fag · årstid · **arena** (🌲 Skog, 💧 Vann/fjære/sjø, 🔥 Bålplass/leir, 🏫 Skolegård/nærmiljø, 🌾 Åpent område, 📍 Passer hvor som helst) · fritekstsøk. Kortene **lenker til** det fulle opplegget på friluftsrad.no (innholdet speiles ikke).
 
 **Oppdatere katalogen** (henter nye opplegg på nytt, ~1–2 min):
 ```bash
