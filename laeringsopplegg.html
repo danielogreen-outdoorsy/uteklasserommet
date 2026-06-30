@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Læringsopplegg – Uteklasserommet.no</title>
+  <meta name="description" content="Bla i over 600 læringsopplegg fra Friluftsrådenes læringsportal. Filtrer på trinn, fag og årstid.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;750;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=6">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="hoved">
+    <section class="seksjon seksjon--sand" style="padding-bottom:2rem;">
+      <div class="wrap">
+        <span class="eyebrow">Fra Læringsportalen</span>
+        <h1>Læringsopplegg for uteskole</h1>
+        <p class="ingress">Bla i <strong id="totalt">600+</strong> ferdige læringsopplegg fra Friluftsrådenes læringsportal. Filtrer på trinn, fag og årstid – eller søk – og finn noe som passer din klasse. Klikk på et opplegg for å åpne hele beskrivelsen.</p>
+      </div>
+    </section>
+
+    <section class="seksjon" style="padding-top:2.2rem;">
+      <div class="wrap">
+        <div class="katalog">
+          <aside class="katalog__filtre">
+            <input class="sok-felt" id="sok" type="search" placeholder="Søk i opplegg …" style="margin-bottom:1.2rem;">
+
+            <div class="filter-gruppe">
+              <h4>Trinn</h4>
+              <div id="filter-trinn"></div>
+            </div>
+            <div class="filter-gruppe">
+              <h4>Fag</h4>
+              <div id="filter-fag"></div>
+            </div>
+            <div class="filter-gruppe">
+              <h4>Årstid</h4>
+              <div id="filter-aarstid"></div>
+            </div>
+            <button class="nullstill" id="nullstill" hidden>Nullstill alle filtre</button>
+          </aside>
+
+          <div>
+            <p class="katalog__teller" id="teller">Laster læringsopplegg …</p>
+            <div class="opplegg-grid" id="grid"></div>
+            <div style="text-align:center; margin-top:2rem;">
+              <button class="btn btn--kontur btn--stor" id="vis-flere" hidden>Vis flere</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="luft-l"></div>
+        <div class="notis maks-center">
+          Oppleggene hentes fra <a href="https://www.friluftsrad.no/laeringsportalen" target="_blank" rel="noopener">Friluftsrådenes læringsportal</a>. Når du åpner et opplegg, går du til den fulle beskrivelsen der.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/site.js?v=6"></script>
+  <script>
+    const TRINN = ["Barnehage", "1.–4. trinn", "5.–7. trinn", "8.–10. trinn"];
+    const FAG = ["Naturfag", "Matematikk", "Norsk", "Samfunnsfag", "Kunst og håndverk", "Mat og helse", "Kroppsøving", "Uten fagområde"];
+    const AARSTID = ["Hele året", "Vår", "Sommer", "Høst", "Vinter"];
+    const FAG_EMOJI = { "Naturfag": "🔬", "Matematikk": "➗", "Norsk": "📖", "Samfunnsfag": "🌍", "Kunst og håndverk": "🎨", "Mat og helse": "🍎", "Kroppsøving": "🤸", "Uten fagområde": "🌿" };
+
+    const state = { trinn: new Set(), fag: new Set(), aarstid: new Set(), sok: "" };
+    let alle = [], filtrert = [], vist = 0;
+    const PER_SIDE = 40;
+
+    const grid = document.getElementById("grid");
+    const teller = document.getElementById("teller");
+    const visFlere = document.getElementById("vis-flere");
+    const nullstillBtn = document.getElementById("nullstill");
+
+    function lagFilter(boksId, verdier, gruppe) {
+      const boks = document.getElementById(boksId);
+      verdier.forEach(v => {
+        const l = document.createElement("label");
+        l.className = "sjekk";
+        l.innerHTML = `<input type="checkbox" value="${v}"> ${v}`;
+        l.querySelector("input").addEventListener("change", e => {
+          if (e.target.checked) state[gruppe].add(v); else state[gruppe].delete(v);
+          oppdater();
+        });
+        boks.appendChild(l);
+      });
+    }
+
+    function passer(o) {
+      if (state.trinn.size && !state.trinn.has(o.trinn)) return false;
+      if (state.fag.size) {
+        const fagVerdi = o.fag || "Uten fagområde";
+        if (!state.fag.has(fagVerdi)) return false;
+      }
+      if (state.aarstid.size && !(o.aarstid || []).some(a => state.aarstid.has(a))) return false;
+      if (state.sok) {
+        const ord = state.sok.split(/\s+/).filter(Boolean);
+        if (!ord.every(w => o.sok.includes(w))) return false;
+      }
+      return true;
+    }
+
+    function kort(o) {
+      const bilde = o.bilde
+        ? `<div class="opplegg-bilde"><img loading="lazy" src="${encodeURI(o.bilde)}" alt="" onerror="this.parentElement.classList.add('opplegg-bilde--tom');this.remove();"></div>`
+        : `<div class="opplegg-bilde opplegg-bilde--tom">${FAG_EMOJI[o.fag] || "🌿"}</div>`;
+      const fag = o.fag ? `<span class="badge badge--fag">${o.fag}</span>` : `<span class="badge">Tverrfaglig</span>`;
+      const aarstid = (o.aarstid || []).map(a => `<span class="badge">${a}</span>`).join("");
+      const sted = o.sted ? `<p class="opplegg-sted">📍 ${o.sted}</p>` : "";
+      return `<a class="opplegg-kort" href="${o.lenke}" target="_blank" rel="noopener">
+        ${bilde}
+        <div class="opplegg-kropp">
+          <h3>${o.navn}</h3>
+          ${sted}
+          <div class="opplegg-meta">${fag}<span class="badge">${o.trinn}</span>${aarstid}</div>
+        </div>
+      </a>`;
+    }
+
+    function tegnSide() {
+      const neste = filtrert.slice(vist, vist + PER_SIDE);
+      grid.insertAdjacentHTML("beforeend", neste.map(kort).join(""));
+      vist += neste.length;
+      visFlere.hidden = vist >= filtrert.length;
+      if (!visFlere.hidden) visFlere.textContent = `Vis flere (${filtrert.length - vist} igjen)`;
+    }
+
+    function oppdater() {
+      filtrert = alle.filter(passer);
+      grid.innerHTML = "";
+      vist = 0;
+      const aktiv = state.trinn.size + state.fag.size + state.aarstid.size + (state.sok ? 1 : 0);
+      nullstillBtn.hidden = aktiv === 0;
+      if (!filtrert.length) {
+        teller.textContent = "Ingen opplegg passer filtrene.";
+        grid.innerHTML = `<div class="filter-tom">🔍 Ingen treff. Prøv å fjerne et filter eller endre søket.</div>`;
+        visFlere.hidden = true;
+        return;
+      }
+      teller.textContent = `Viser ${filtrert.length} av ${alle.length} opplegg`;
+      tegnSide();
+    }
+
+    document.getElementById("sok").addEventListener("input", e => { state.sok = e.target.value.trim().toLowerCase(); oppdater(); });
+    visFlere.addEventListener("click", tegnSide);
+    nullstillBtn.addEventListener("click", () => {
+      state.trinn.clear(); state.fag.clear(); state.aarstid.clear(); state.sok = "";
+      document.querySelectorAll(".katalog__filtre input[type=checkbox]").forEach(c => c.checked = false);
+      document.getElementById("sok").value = "";
+      oppdater();
+    });
+
+    lagFilter("filter-trinn", TRINN, "trinn");
+    lagFilter("filter-fag", FAG, "fag");
+    lagFilter("filter-aarstid", AARSTID, "aarstid");
+
+    fetch("data/laeringsopplegg.json")
+      .then(r => r.json())
+      .then(d => {
+        alle = d.opplegg;
+        document.getElementById("totalt").textContent = alle.length;
+        oppdater();
+      })
+      .catch(() => { teller.textContent = "Kunne ikke laste læringsoppleggene."; });
+  </script>
+</body>
+</html>

@@ -24,9 +24,10 @@ Nettsiden er en *inngangsport*: presentere idéen, embede kartet, og senke tersk
 
 | Fil | Meny | Innhold |
 |-----|------|---------|
-| `index.html` | (forside) | Hovedbudskap, tre innganger, embedet kart |
+| `index.html` | (forside) | Hovedbudskap, innganger, embedet kart |
 | `finn-skole.html` | Finn skole | Embedet Adaptiv-kart – søk skole / utforsk hele landet |
 | `kartlegg.html` | Kartlegg | 4 steg + registreringsknapp + «Slik blir skolen med» |
+| `laeringsopplegg.html` | Opplegg | Filtrerbar katalog over 629 læringsopplegg fra Læringsportalen |
 | `sjekkliste.html` | Sjekkliste | Digital sjekkliste (taksonomi fra feltspesifikasjonen) |
 | `veileder.html` | Veileder | Veileder for lærere/skoler, inkl. elevmedvirkning |
 | `planlegg.html` | Ressurser | Eksterne ressurser + samarbeidspartnere |
@@ -37,6 +38,15 @@ Innholdet bygger på prosjektets kildefiler:
 - `Uteklasserommet_survey_feltspesifikasjon.xlsx` (25 felt, 7 seksjoner, verdilister → sjekklistas taksonomi)
 - `Uteklasserommet_datamodell.geojson`
 - Fargekoding fra `Mal_uteklasseromsplakat.pdf` (blå/grønn/gul/brun/lilla)
+
+## Læringsopplegg-katalog
+
+`data/laeringsopplegg.json` (629 opplegg) hentes fra **Friluftsrådenes læringsportal** sitt API (`friluftsrad.no/api/learningactivity/all` + detalj per opplegg). Hvert opplegg er beriket med trinn, fag, **årstid** og **sted**, samt en søkeblob som også dekker kompetansemål. Kortene **lenker til** det fulle opplegget på friluftsrad.no (innholdet speiles ikke).
+
+**Oppdatere katalogen** (henter nye opplegg på nytt, ~1–2 min):
+```bash
+python verktoy/hent_laeringsopplegg.py
+```
 
 ## Kjøre lokalt
 

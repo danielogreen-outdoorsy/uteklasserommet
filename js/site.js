@@ -5,11 +5,12 @@
   const ADAPTIV_URL = "https://friluft.avadaptive.no/survey/uteklasserommet"; // Registrering av uteskoleopplegg (Adaptiv 4)
 
   const NAV = [
-    { href: "finn-skole.html", tekst: "Finn skole" },
-    { href: "kartlegg.html",   tekst: "Kartlegg" },
-    { href: "sjekkliste.html", tekst: "Sjekkliste" },
-    { href: "veileder.html",   tekst: "Veileder" },
-    { href: "planlegg.html",   tekst: "Ressurser" },
+    { href: "finn-skole.html",       tekst: "Finn skole" },
+    { href: "kartlegg.html",         tekst: "Kartlegg" },
+    { href: "laeringsopplegg.html",  tekst: "Opplegg" },
+    { href: "sjekkliste.html",       tekst: "Sjekkliste" },
+    { href: "veileder.html",         tekst: "Veileder" },
+    { href: "planlegg.html",         tekst: "Ressurser" },
   ];
 
   const aktiv = location.pathname.split("/").pop() || "index.html";
@@ -66,6 +67,7 @@
           </div>
           <div>
             <h4>Verktøy &amp; ressurser</h4>
+            <a href="laeringsopplegg.html">Læringsopplegg</a>
             <a href="sjekkliste.html">Digital sjekkliste</a>
             <a href="planlegg.html">Ressurser og samarbeid</a>
             <a href="https://friluft.avadaptive.no/survey/uteklasserommet" target="_blank" rel="noopener">Registrer i Adaptiv 4</a>
