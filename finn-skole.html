@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finn skolen din – Uteklasserommet.no</title>
+  <meta name="description" content="Søk opp skolen din i kartet og se registrerte læringssteder i nærmiljøet og i hele Norge.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;750;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=5">
+  <style>
+    .kart-intro { background: var(--sand-100); border-bottom: 1px solid var(--sand-200); }
+    .kart-intro__inn { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; padding: 1.1rem 0; }
+    .kart-intro h1 { font-size: 1.5rem; margin: 0; }
+    .kart-intro__tekst { flex: 1; min-width: 240px; }
+    .kart-intro__tekst p { margin: .2rem 0 0; color: var(--blekk-myk); font-size: .95rem; }
+    .embed-flate { position: relative; width: 100%; height: calc(100vh - 68px - 96px); min-height: 480px; background: var(--gronn-100); }
+    .embed-flate iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .embed-laster { position: absolute; inset: 0; display: grid; place-items: center; color: var(--gronn-700); font-weight: 600; pointer-events: none; }
+    @media (max-width: 760px) { .embed-flate { height: 72vh; } }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="hoved">
+    <section class="kart-intro">
+      <div class="wrap kart-intro__inn">
+        <div class="kart-intro__tekst">
+          <span class="eyebrow" style="margin-bottom:.2rem;">Finn skole &amp; utforsk</span>
+          <h1>Finn skolen din i kartet</h1>
+          <p>Søk opp skolen i kartet og naviger til nærmiljøet – eller zoom ut og se læringssteder i hele Norge. Nye uteskoleopplegg dukker opp automatisk når de registreres.</p>
+        </div>
+        <div class="merkelapp-rad">
+          <span class="badge"><span class="prikk kat-vatomrade"></span>Våtområde</span>
+          <span class="badge"><span class="prikk kat-skog"></span>Skog</span>
+          <span class="badge"><span class="prikk kat-mark"></span>Åpent/dyrka mark</span>
+          <span class="badge"><span class="prikk kat-kulturminne"></span>Kulturminne</span>
+          <span class="badge"><span class="prikk kat-annet"></span>Annet</span>
+        </div>
+        <a class="btn btn--gul" href="https://friluft.avadaptive.no/survey/uteklasserommet" target="_blank" rel="noopener">Registrer uteskoleopplegg →</a>
+      </div>
+    </section>
+
+    <div class="embed-flate">
+      <div class="embed-laster" id="embed-laster">Laster kartet …</div>
+      <iframe
+        src="https://friluft.avadaptive.no/map/.embed/uteklasserommet"
+        title="Kart over registrerte læringssteder – Uteklasserommet"
+        loading="lazy"
+        allow="geolocation; fullscreen"
+        referrerpolicy="no-referrer-when-downgrade"
+        onload="var l=document.getElementById('embed-laster'); if(l) l.style.display='none';"></iframe>
+    </div>
+
+    <section class="seksjon" style="padding:2rem 0;">
+      <div class="wrap">
+        <div class="grid grid--2" style="gap:1.2rem;">
+          <div class="notis" style="margin:0;">
+            <strong>Søk i kartet:</strong> Bruk søkefeltet i kartet til å finne skolen din, eller naviger med mus/finger. Klikk på et punkt for å se beskrivelse, fag og trinn.
+          </div>
+          <div class="notis" style="margin:0;">
+            Finner du ikke skolen din ennå? Da er den kanskje ikke i gang.
+            <a href="kartlegg.html">Se hvordan skolen blir med →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/site.js?v=5"></script>
+</body>
+</html>

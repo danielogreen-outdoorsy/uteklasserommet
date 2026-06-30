@@ -1,0 +1,17 @@
+# OS / OneDrive
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Editorer
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logger
+*.log
+
+# Vercel
+.vercel

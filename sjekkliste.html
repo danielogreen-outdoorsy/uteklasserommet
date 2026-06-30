@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital sjekkliste – Uteklasserommet.no</title>
+  <meta name="description" content="Huk av hva som finnes i skolens nærmiljø. Bygget på sjekklista for læringssteder i nærmiljøet.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;750;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=5">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="hoved">
+    <section class="seksjon seksjon--sand" style="padding-bottom:2rem;">
+      <div class="wrap maks-center">
+        <span class="eyebrow">Verktøy</span>
+        <h1>Digital sjekkliste for nærmiljøet</h1>
+        <p class="ingress">Hva finnes egentlig i skolens nærområde? Gå gjennom lista sammen med elevene og huk av det dere har. Ofte dukker det opp læringsmuligheter dere ikke hadde tenkt på.</p>
+        <div class="luft-s"></div>
+        <div class="stat-rad" style="max-width:520px;">
+          <div class="stat"><div class="stat__tall" id="huket">0</div><div class="stat__merk">avhuket</div></div>
+          <div class="stat"><div class="stat__tall" id="totalt">0</div><div class="stat__merk">muligheter i lista</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seksjon" style="padding-top:2.5rem;">
+      <div class="wrap maks-center">
+        <div id="sjekkliste"></div>
+        <div class="luft"></div>
+        <div class="notis">
+          <strong>Tips:</strong> Det du huker av her kan bli til registreringer i kartet. Fant dere en fin myr eller et kulturminne?
+          <a href="kartlegg.html">Registrer det som et uteklasserom →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/site.js?v=5"></script>
+  <script>
+    // Taksonomi fra Uteklasserommet_survey_feltspesifikasjon (ark "Verdilister") + sjekklista
+    const KATEGORIER = [
+      { navn: "Natur", ikon: "🌿", items: ["Bergart/flyttstein","Tresort (furu, bjørk, osp m.m.)","Plantefelt","Vann/bekk/foss/gyteplass","Myr","Grotte/heller","Klatrestein/berg","Bre-/vannlandskap","Froskedam","Gammelskog/råtne trær","Fjæretype","Fugletitteplass","Naturfenomen"] },
+      { navn: "Kulturminne (synlig)", ikon: "🏛️", items: ["Kulturminne eldre enn 1537","Samisk kulturminne","Minnesmerke","Gravplass","Gamle veier/ferdselsårer","Bergkunst","Fangstanlegg","Krigsminne","Museumsbygg","Gammel boplass","Steingjerde/slåttemark"] },
+      { navn: "Kulturminne (immateriell)", ikon: "📜", items: ["Stedsnavn","Sted knyttet til historie","Funnsted for historiske gjenstander"] },
+      { navn: "Bygninger", ikon: "🏚️", items: ["Vernet/fredet bygning","Bygning eldre enn 1900 (SEFRAK)","Spesiell bygningsstil","Bygning med historie","Eldste/høyeste bygning","Bygning med funksjon (fjøs, kai, høyløe m.m.)"] },
+      { navn: "Høstingsplass", ikon: "🍄", items: ["Bærplukking","Skolehage","Spiselige urter","Sopp","Seljefløyte-emner","Naturmaterialer (kongler, skjell m.m.)","Fiskeplass fra land","Bjørkesaft"] },
+      { navn: "Spesiell funksjon / friluftsliv", ikon: "⛺", items: ["Tilgjengelig kunst","Trimkasse","Turmål","Utsiktspunkt","Ferdselsåre","Åpent toalett","100-metersskog","Park","Informasjonsskilt","Akebakke","Idrettsanlegg","Friluftsområde","Bålplass","Båtutsett","Kano-/kajakkplass","Samlingsplass","Badeplass","Gapahuk","HC-tilrettelagt turområde"] },
+      { navn: "Institusjon", ikon: "🏥", items: ["Museum","Omsorgsbolig","Sykehjem","Bibliotek","Sykehus","Politi/lensmann","Domstol","Jernbaneverk","Statskog","Forsvaret","Fylkeskommunalt kontor","Statlig kontor"] },
+      { navn: "Næringsliv / fagmiljø", ikon: "🏭", items: ["Butikk/salg","Produksjonsbedrift","Tjenesteyting","Landbruk","Skogbruk","Kart/oppmåling","Kraftstasjon","Gjenbruksstasjon","Vannrenseanlegg","Værstasjon"] },
+      { navn: "Menneskelige ressurser", ikon: "🧑‍🏫", items: ["Forening/organisasjon","Lokalhistoriekompetanse","Fugle-/dyrekompetanse","Annen lokal kompetanse"] },
+      { navn: "Trafikk og transport", ikon: "🚦", items: ["Parkeringsplass","Lyskryss","Trafikkobservasjonssted","Jernbane-/trikk-/T-banestasjon","Kaianlegg"] },
+    ];
+
+    const root = document.getElementById("sjekkliste");
+    let total = 0;
+    KATEGORIER.forEach((kat, i) => {
+      total += kat.items.length;
+      const rader = kat.items.map((it, j) =>
+        `<label class="liste-rad"><input type="checkbox" class="sjekk-boks"> ${it}</label>`).join("");
+      const el = document.createElement("div");
+      el.className = "akkordion" + (i === 0 ? " apen" : "");
+      el.innerHTML = `
+        <button class="akkordion__hode" aria-expanded="${i===0}">
+          <span class="akkordion__pil">▶</span>
+          <span>${kat.ikon} ${kat.navn}</span>
+          <span class="akkordion__tall"><span class="kat-teller">0</span>/${kat.items.length}</span>
+        </button>
+        <div class="akkordion__kropp">${rader}</div>`;
+      root.appendChild(el);
+    });
+    document.getElementById("totalt").textContent = total;
+
+    // Interaksjon
+    root.querySelectorAll(".akkordion__hode").forEach(h => {
+      h.addEventListener("click", () => {
+        const ak = h.closest(".akkordion");
+        const apen = ak.classList.toggle("apen");
+        h.setAttribute("aria-expanded", String(apen));
+      });
+    });
+    function oppdater() {
+      let n = 0;
+      root.querySelectorAll(".akkordion").forEach(ak => {
+        const boks = ak.querySelectorAll(".sjekk-boks");
+        const av = [...boks].filter(b => b.checked).length;
+        ak.querySelector(".kat-teller").textContent = av;
+        n += av;
+      });
+      document.getElementById("huket").textContent = n;
+    }
+    root.querySelectorAll(".sjekk-boks").forEach(b => b.addEventListener("change", oppdater));
+  </script>
+</body>
+</html>

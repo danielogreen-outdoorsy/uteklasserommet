@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uteklasserommet.no – Bygg skolens felles uteklasserom</title>
+  <meta name="description" content="Kartlegg, del og utvikle skolens læringsarenaer i nærmiljøet. Et prosjekt fra Friluftsrådenes Landsforbund.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;750;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=5">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="hoved">
+    <!-- HERO -->
+    <section class="hero">
+      <svg class="hero__topo" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g fill="none" stroke="#fff" stroke-width="1.5">
+          <path d="M0 320 Q300 260 600 300 T1200 280"/>
+          <path d="M0 350 Q300 300 600 335 T1200 320"/>
+          <path d="M0 290 Q300 220 600 270 T1200 240"/>
+          <path d="M0 250 Q300 180 600 230 T1200 200"/>
+          <path d="M0 210 Q300 150 600 190 T1200 170"/>
+        </g>
+      </svg>
+      <div class="wrap hero__inn">
+        <span class="eyebrow" style="color:var(--gronn-300)">Friluftsrådenes Landsforbund</span>
+        <h1>Bygg skolens felles uteklasserom</h1>
+        <p class="ingress">Kartlegg, del og utvikle skolens læringsarenaer i nærmiljøet. Alle lærere ved skolen jobber i samme kart – og henter inspirasjon fra skoler i hele landet.</p>
+        <div class="hero__knapper">
+          <a class="btn btn--gul btn--stor" href="finn-skole.html">Finn skolen din i kartet</a>
+          <a class="btn btn--kontur btn--stor" href="kartlegg.html" style="color:#fff;border-color:rgba(255,255,255,.5)">Start kartlegging</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HVA ER DETTE -->
+    <section class="seksjon">
+      <div class="wrap">
+        <div class="grid grid--3">
+          <div>
+            <span class="eyebrow">Idéen</span>
+            <h2>Uteklasserommet viser <em>hvor</em> læring i friluft kan skje</h2>
+          </div>
+          <div class="kort" style="grid-column: span 2; display:flex; gap:1.4rem; align-items:center; flex-wrap:wrap;">
+            <p style="flex:1; min-width:260px; margin:0; font-size:1.08rem;">
+              Hver skole får sitt eget felles kart over nærmiljøet. Lærerne registrerer uteklasserom, naturtyper, kulturminner og møteplasser – og bygger en delt ressurs som blir bedre for hvert år.
+              Derfra kan hver lærer lage egne kart for sin klasse, sitt fag eller sitt tema.
+            </p>
+            <a class="btn btn--primar" href="veileder.html">Slik fungerer det</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FIRE INNGANGER -->
+    <section class="seksjon seksjon--sand">
+      <div class="wrap">
+        <div class="midtstilt maks-center">
+          <span class="eyebrow">Kom i gang</span>
+          <h2>Tre veier inn</h2>
+        </div>
+        <div class="luft"></div>
+        <div class="grid grid--3">
+          <a class="kort" href="finn-skole.html">
+            <div class="kort__ikon">🔎</div>
+            <h3>Finn skolen din</h3>
+            <p>Søk opp skolen i kartet og se læringssteder i nærmiljøet.</p>
+          </a>
+          <a class="kort" href="kartlegg.html">
+            <div class="kort__ikon">📍</div>
+            <h3>Kartlegg uteklasserom</h3>
+            <p>Registrer et nytt uteskoleopplegg i fire enkle steg.</p>
+          </a>
+          <a class="kort" href="veileder.html">
+            <div class="kort__ikon">🧭</div>
+            <h3>Slik kommer dere i gang</h3>
+            <p>Veileder for lærere og skoler – fra første idé til felles kart.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- KART -->
+    <section class="seksjon">
+      <div class="wrap">
+        <div class="grid grid--2" style="align-items:center; gap:2.4rem;">
+          <div>
+            <span class="eyebrow">Hele Norge</span>
+            <h2>Læring i friluft – på kartet</h2>
+            <p class="ingress">Hvert punkt er et uteklasserom registrert av en lærer. Zoom ut for å se hele landet, eller inn på ditt eget nærmiljø.</p>
+            <div class="merkelapp-rad" style="margin:1.2rem 0 1.6rem;">
+              <span class="badge"><span class="prikk kat-vatomrade"></span>Våtområde</span>
+              <span class="badge"><span class="prikk kat-skog"></span>Skog</span>
+              <span class="badge"><span class="prikk kat-mark"></span>Åpent/dyrka mark</span>
+              <span class="badge"><span class="prikk kat-kulturminne"></span>Kulturminne</span>
+              <span class="badge"><span class="prikk kat-annet"></span>Annet</span>
+            </div>
+            <a class="btn btn--primar" href="finn-skole.html">Åpne hele kartet</a>
+          </div>
+          <div style="height:420px; border-radius:var(--radius-l); overflow:hidden; box-shadow:var(--skygge-l); border:1px solid var(--sand-200);">
+            <iframe
+              src="https://friluft.avadaptive.no/map/.embed/uteklasserommet"
+              title="Kart over registrerte læringssteder – Uteklasserommet"
+              loading="lazy"
+              allow="geolocation; fullscreen"
+              style="width:100%; height:100%; border:0; display:block;"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATISTIKK -->
+    <section class="seksjon seksjon--gronn">
+      <div class="wrap">
+        <div class="midtstilt maks-center">
+          <span class="eyebrow">Et nasjonalt løft</span>
+          <h2>Sammen kartlegger vi Norges uteklasserom</h2>
+        </div>
+        <div class="luft"></div>
+        <div class="stat-rad">
+          <div class="stat"><div class="stat__tall">🇳🇴</div><div class="stat__merk">ett felles kart for hele landet</div></div>
+          <div class="stat"><div class="stat__tall">7</div><div class="stat__merk">fag dekket</div></div>
+          <div class="stat"><div class="stat__tall">11</div><div class="stat__merk">kategorier i sjekklista</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="seksjon">
+      <div class="wrap midtstilt maks-center">
+        <h2>Klar for å bygge skolens uteklasserom?</h2>
+        <p class="ingress" style="margin-inline:auto">Begynn med å finne skolen din, eller les veilederen for hvordan dere kommer i gang.</p>
+        <div class="luft-s"></div>
+        <div class="hero__knapper" style="justify-content:center">
+          <a class="btn btn--primar btn--stor" href="finn-skole.html">Finn din skole</a>
+          <a class="btn btn--kontur btn--stor" href="veileder.html">Les veilederen</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/site.js?v=5"></script>
+</body>
+</html>
