@@ -115,7 +115,7 @@ a  { color: var(--gronn-700); }
 .merke-skille { width: 1px; height: 32px; background: var(--sand-200); flex: none; }
 .merke-lif { display: inline-flex; align-items: center; flex: none; text-decoration: none; }
 .merke-lif img { height: 34px; width: auto; display: block; }
-@media (max-width: 1180px) { .merke-skille, .merke-lif { display: none; } }
+@media (max-width: 1240px) { .merke-skille, .merke-lif { display: none; } }
 .nav { margin-left: auto; display: flex; align-items: center; gap: .15rem; }
 .nav a {
   text-decoration: none; color: var(--blekk); font-weight: 550; font-size: .93rem;
@@ -128,7 +128,7 @@ a  { color: var(--gronn-700); }
 .burger { display: none; margin-left: auto; background: none; border: 0; cursor: pointer; padding: .4rem; }
 .burger span { display: block; width: 24px; height: 2.5px; background: var(--gronn-900); margin: 5px 0; border-radius: 2px; transition: .2s; }
 
-@media (max-width: 1080px) {
+@media (max-width: 1160px) {
   .nav { position: absolute; top: 100%; left: 0; right: 0; display: none; flex-direction: column; align-items: stretch;
     background: var(--sand-50); border-bottom: 1px solid var(--sand-200); padding: .6rem 22px 1.2rem;
     gap: .1rem; max-height: 80vh; overflow: auto; box-shadow: var(--skygge); }
@@ -281,7 +281,12 @@ a.kort:hover { transform: translateY(-3px); box-shadow: var(--skygge-l); border-
   .liste-rad { padding: .6rem 0; }
   .btn { padding: .85em 1.5em; }
 }
-.katalog__teller { font-size: .92rem; color: var(--blekk-myk); margin: 0 0 1.1rem; }
+.katalog__topp { display: flex; align-items: center; justify-content: space-between; gap: .8rem 1.2rem; flex-wrap: wrap; margin-bottom: 1.1rem; }
+.katalog__teller { font-size: .92rem; color: var(--blekk-myk); margin: 0; }
+.katalog__sort { display: flex; align-items: center; gap: .5rem; font-size: .9rem; color: var(--blekk-myk); }
+.sort-select { font: inherit; font-size: .9rem; padding: .45em .6em; border: 1.5px solid var(--sand-200); border-radius: 8px; background: #fff; cursor: pointer; }
+.sort-select:focus { outline: 2px solid var(--gronn-300); border-color: var(--gronn-500); }
+.katalog__sort .btn { padding: .45em .85em; font-size: .85rem; }
 .opplegg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(212px, 1fr)); gap: 1.2rem; }
 .opplegg-kort { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--sand-200); border-radius: var(--radius); overflow: hidden; text-decoration: none; color: inherit; box-shadow: var(--skygge); transition: .16s; }
 .opplegg-kort:hover { transform: translateY(-3px); box-shadow: var(--skygge-l); border-color: var(--gronn-300); }

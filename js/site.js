@@ -7,7 +7,7 @@
   const NAV = [
     { href: "finn-skole.html",       tekst: "Finn skole" },
     { href: "kartlegg.html",         tekst: "Kartlegg" },
-    { href: "laeringsopplegg.html",  tekst: "Opplegg" },
+    { href: "laeringsopplegg.html",  tekst: "Læringsopplegg" },
     { href: "sjekkliste.html",       tekst: "Sjekkliste" },
     { href: "veileder.html",         tekst: "Veileder" },
     { href: "planlegg.html",         tekst: "Ressurser" },

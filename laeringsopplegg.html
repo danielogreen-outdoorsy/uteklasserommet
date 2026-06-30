@@ -6,7 +6,7 @@
   <title>Læringsopplegg – Uteklasserommet.no</title>
   <meta name="description" content="Bla i over 600 læringsopplegg fra Friluftsrådenes læringsportal. Filtrer på trinn, fag, årstid og arena.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;750;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=12">
+  <link rel="stylesheet" href="css/styles.css?v=13">
 </head>
 <body>
   <div id="site-header"></div>
@@ -51,7 +51,18 @@
           </aside>
 
           <div>
-            <p class="katalog__teller" id="teller">Laster læringsopplegg …</p>
+            <div class="katalog__topp">
+              <p class="katalog__teller" id="teller">Laster læringsopplegg …</p>
+              <div class="katalog__sort">
+                <label for="sortering">Sorter:</label>
+                <select id="sortering" class="sort-select">
+                  <option value="standard">Anbefalt</option>
+                  <option value="alfa">A–Å</option>
+                  <option value="tilfeldig">🎲 Overrask meg</option>
+                </select>
+                <button id="bland" class="btn btn--lys" type="button" hidden>🎲 Trekk på nytt</button>
+              </div>
+            </div>
             <div class="opplegg-grid" id="grid"></div>
             <div style="text-align:center; margin-top:2rem;">
               <button class="btn btn--kontur btn--stor" id="vis-flere" hidden>Vis flere</button>
@@ -69,7 +80,7 @@
 
   <div id="site-footer"></div>
 
-  <script src="js/site.js?v=12"></script>
+  <script src="js/site.js?v=13"></script>
   <script>
     const TRINN = ["Barnehage", "1.–4. trinn", "5.–7. trinn", "8.–10. trinn"];
     const FAG = ["Naturfag", "Matematikk", "Norsk", "Samfunnsfag", "Kunst og håndverk", "Mat og helse", "Kroppsøving", "Uten fagområde"];
@@ -78,7 +89,22 @@
     const ARENA_EMOJI = { "Skog": "🌲", "Vann, fjære & sjø": "💧", "Bålplass & leir": "🔥", "Skolegård & nærmiljø": "🏫", "Åpent område": "🌾", "Passer hvor som helst": "📍" };
     const FAG_EMOJI = { "Naturfag": "🔬", "Matematikk": "➗", "Norsk": "📖", "Samfunnsfag": "🌍", "Kunst og håndverk": "🎨", "Mat og helse": "🍎", "Kroppsøving": "🤸", "Uten fagområde": "🌿" };
 
-    const state = { trinn: new Set(), fag: new Set(), aarstid: new Set(), arena: new Set(), sok: "" };
+    const state = { trinn: new Set(), fag: new Set(), aarstid: new Set(), arena: new Set(), sok: "", sortering: "standard" };
+
+    function sorter(liste) {
+      if (state.sortering === "alfa") {
+        return [...liste].sort((a, b) => a.navn.localeCompare(b.navn, "nb"));
+      }
+      if (state.sortering === "tilfeldig") {
+        const a = [...liste];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+      return liste; // standard / anbefalt rekkefølge
+    }
     let alle = [], filtrert = [], vist = 0;
     const PER_SIDE = 40;
 
@@ -144,7 +170,7 @@
     }
 
     function oppdater() {
-      filtrert = alle.filter(passer);
+      filtrert = sorter(alle.filter(passer));
       grid.innerHTML = "";
       vist = 0;
       const aktiv = state.trinn.size + state.fag.size + state.aarstid.size + state.arena.size + (state.sok ? 1 : 0);
@@ -163,6 +189,14 @@
 
     document.getElementById("sok").addEventListener("input", e => { state.sok = e.target.value.trim().toLowerCase(); oppdater(); });
     visFlere.addEventListener("click", tegnSide);
+
+    const blandBtn = document.getElementById("bland");
+    document.getElementById("sortering").addEventListener("change", e => {
+      state.sortering = e.target.value;
+      blandBtn.hidden = state.sortering !== "tilfeldig";
+      oppdater();
+    });
+    blandBtn.addEventListener("click", oppdater); // ny tilfeldig trekning
     nullstillBtn.addEventListener("click", () => {
       state.trinn.clear(); state.fag.clear(); state.aarstid.clear(); state.arena.clear(); state.sok = "";
       document.querySelectorAll(".katalog__filtre input[type=checkbox]").forEach(c => c.checked = false);
@@ -183,7 +217,7 @@
     lagFilter("filter-aarstid", AARSTID, "aarstid");
     lagFilter("filter-arena", ARENA, "arena", ARENA_EMOJI);
 
-    fetch("data/laeringsopplegg.json?v=12")
+    fetch("data/laeringsopplegg.json?v=13")
       .then(r => r.json())
       .then(d => {
         alle = d.opplegg;
