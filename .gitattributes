@@ -1,0 +1,9 @@
+# Normaliser linjeskift: LF i repoet, plattformens standard i arbeidskopien
+* text=auto
+
+# Binærfiler – ikke rør
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
