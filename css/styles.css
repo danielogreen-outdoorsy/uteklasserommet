@@ -239,6 +239,8 @@ a.kort:hover { transform: translateY(-3px); box-shadow: var(--skygge-l); border-
 .notis { background: var(--gronn-100); border-left: 4px solid var(--gronn-500); border-radius: 0 var(--radius-s) var(--radius-s) 0; padding: 1rem 1.2rem; font-size: .96rem; }
 .notis strong { color: var(--gronn-700); }
 .merkelapp-rad { display: flex; flex-wrap: wrap; gap: .5rem; }
+.tegnforklaring { display: grid; gap: 1.1rem; }
+.merkelapp-tittel { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--blekk-myk); margin-bottom: .55rem; }
 
 .bilde-plass { background: linear-gradient(135deg, var(--gronn-300), var(--gronn-100)); border-radius: var(--radius);
   display: grid; place-items: center; color: var(--gronn-700); font-weight: 600; min-height: 220px; }

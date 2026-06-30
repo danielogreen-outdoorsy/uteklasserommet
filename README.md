@@ -37,7 +37,10 @@ Nettsiden er en *inngangsport*: presentere idéen, embede kartet, og senke tersk
 Innholdet bygger på prosjektets kildefiler:
 - `Uteklasserommet_survey_feltspesifikasjon.xlsx` (25 felt, 7 seksjoner, verdilister → sjekklistas taksonomi)
 - `Uteklasserommet_datamodell.geojson`
-- Kartkategorier/fargekoding (tegnforklaring på forside + Finn skole): 🔵 Vann og våtområde · 🟢 Skog · 🟡 Åpent/dyrka mark · ⚫ Fjell · ⚪ Bebygd · 🟣 Annet. (Selve punktfargene på det embedede kartet styres av Adaptiv.)
+- Tegnforklaring (forside + Finn skole), to grupper:
+  - **Natur- og landskapstyper** (fargekodet): 🔵 Vann og våtområde · 🟢 Skog · 🟡 Åpent/dyrka mark · ⚫ Fjell · ⚪ Bebygd · 🟣 Annet
+  - **Type sted** (uten farge, m/ikon): ⛺ Tilrettelagt friluftsområde · 🍄 Høstingsplass · 🏛️ Kulturminne · 🏠 Bygning · 🏭 Næringsliv
+  - (Selve punktfargene/kategoriene på det embedede kartet styres av Adaptiv.)
 
 ## Læringsopplegg-katalog
 
