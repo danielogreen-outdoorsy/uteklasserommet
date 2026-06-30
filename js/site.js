@@ -31,7 +31,7 @@
           <span>Uteklasserommet</span>
         </a>
         <span class="merke-skille" aria-hidden="true"></span>
-        <a class="merke-lif" href="https://www.friluftsrad.no/laring-i-friluft" target="_blank" rel="noopener" aria-label="Læring i friluft">
+        <a class="merke-lif" href="https://www.friluftsrad.no/arbeidsomrader/skole-og-barnehage/laering-i-friluft" target="_blank" rel="noopener" aria-label="Læring i friluft">
           <img src="img/lif-logo.svg" alt="Læring i friluft">
         </a>
         <button class="burger" aria-label="Meny" aria-expanded="false">
