@@ -306,3 +306,6 @@ a.kort:hover { transform: translateY(-3px); box-shadow: var(--skygge-l); border-
 .filter-tom { text-align: center; padding: 3rem 1rem; color: var(--blekk-myk); }
 .nullstill { background: none; border: 0; color: var(--gronn-700); font: inherit; font-weight: 600; cursor: pointer; padding: 0; margin-top: .4rem; text-decoration: underline; }
 .nullstill:hover { color: var(--gronn-500); }
+
+/* Mobil: mer luft mot kantene */
+@media (max-width: 600px) { .wrap { padding: 0 30px; } }
