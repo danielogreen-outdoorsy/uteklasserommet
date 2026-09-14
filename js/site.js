@@ -10,7 +10,7 @@
     { href: "laeringsopplegg.html",  tekst: "Læringsopplegg" },
     { href: "sjekkliste.html",       tekst: "Sjekkliste" },
     { href: "veileder.html",         tekst: "Veileder" },
-    { href: "planlegg.html",         tekst: "Ressurser" },
+    { href: "planlegg.html",         tekst: "Samarbeidspartnere" },
   ];
 
   const aktiv = location.pathname.split("/").pop() || "index.html";
