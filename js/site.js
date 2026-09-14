@@ -2,11 +2,8 @@
    Injiseres med JS slik at navigasjonen bare vedlikeholdes ett sted. */
 
 (function () {
-  const ADAPTIV_URL = "https://friluft.avadaptive.no/survey/uteklasserommet"; // Registrering av uteskoleopplegg (Adaptiv 4)
-
   const NAV = [
     { href: "finn-skole.html",       tekst: "Finn skole" },
-    { href: "kartlegg.html",         tekst: "Kartlegg" },
     { href: "laeringsopplegg.html",  tekst: "Læringsopplegg" },
     { href: "sjekkliste.html",       tekst: "Sjekkliste" },
     { href: "veileder.html",         tekst: "Veileder" },
@@ -39,7 +36,7 @@
         </button>
         <nav class="nav" aria-label="Hovedmeny">
           ${navHtml}
-          <a class="btn btn--gul nav__cta" href="${ADAPTIV_URL}" target="_blank" rel="noopener">Registrer uteklasserom</a>
+          <a class="btn btn--gul nav__cta" href="kartlegg.html">Registrer uteklasserom</a>
         </nav>
       </div>
     </header>`;
